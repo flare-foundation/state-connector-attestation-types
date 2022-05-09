@@ -20,7 +20,7 @@ Note that if the sender tried to make the transaction in due time but the transa
 Deadlines for a transaction to be attested can be provided in two ways:
 
 - `deadlineBlockNumber`: The last block number to be considered as valid,
-- `deadlineTimestamp`: The last block timestamp (in seconds) to be considered as valid.
+- `deadlineTimestamp`: The last block timestamp (in seconds since UNIX epoch) to be considered as valid.
 
 Given a transaction in block `blockNumber` with `blockTimestamp` a transaction for which one of the following is true meets the criteria of being executed in time:
 
