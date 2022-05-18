@@ -31,8 +31,8 @@ Beside the standard fields (`attestationType`, `sourceId` and `upperBoundProof`)
 
 | Name              | Size (bytes) | Internal type      | Description                                                                  |
 | ----------------- | ------------ | ------------------ | ---------------------------------------------------------------------------- |
-| `attestationType` | 2            | `AttestationType`  | Attestation type id for this request, see `AttestationType` enum.            |
-| `sourceId`        | 4            | `SourceId`         | The ID of the underlying chain, see `SourceId` enum.                         |
+| `attestationType` | 2            | `AttestationType`  | Attestation type id for this request, see [`AttestationType`](./enums.md#attestation-type) enum.            |
+| `sourceId`        | 4            | `SourceId`         | The ID of the underlying chain, see [`SourceId`](./enums.md#source-id) enum.                         |
 | `upperBoundProof` | 32           | `ByteSequenceLike` | The hash of the confirmation block for an upper query window boundary block. |
 | `id`              | 32           | `ByteSequenceLike` | Transaction hash to search for.                                              |
 | `inUtxo`          | 1            | `NumberLike`       | Index of the source address on UTXO chains. Always 0 on non-UTXO chains.     |
