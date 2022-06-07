@@ -1,3 +1,4 @@
+[TOC](../README.md)
 # Attestation Type
 
 The Attestation Type enum
