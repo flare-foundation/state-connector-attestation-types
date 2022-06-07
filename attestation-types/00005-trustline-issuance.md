@@ -58,7 +58,7 @@ Beside the standard fields (`attestationType`, `sourceId` and `upperBoundProof`)
 | `tokenCurrencyCode`    | `bytes32`    | 3 letter code or 160-bit hexadecimal string known as [Currency code](https://xrpl.org/currency-formats.html#currency-codes). The first byte indicates whether it is a 3 letter encoded ascii string `0x00...` or 160 bit hex string `0x01...`  |
 | `tokenValueNominator`  | `uint256`    | Nominator of the token value described as the fraction reduced by the highest exponent of 10           |
 | `tokenValueDenominator`| `uint256`    | Denominator of the token value described as the fraction reduced by the highest exponent of 10         |
-| `tokenIssuer`          | `bytes32`    | Ripple account address of token issuer as bytes  |
+| `tokenIssuer`          | `bytes32`    | Ripple account address of token issuer as bytes (right padded address bytes (20 + 12)) |
 
 Next: [Add new one :D](../README.md)
 
