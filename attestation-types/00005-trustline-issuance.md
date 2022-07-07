@@ -31,7 +31,7 @@ Attestor must confirm that the following config is applied to [account settings]
 
 Attestation request should provide top and bottom block hash (or block index).
 
-Account history should have 1 `Payment` transaction, 1 `SetRegularKey` transaction, and 1 `AccountSet` transaction only, otherwise is proven to be invalid. Account history can be queried via the [`account_tx`]((https://xrpl.org/account_tx.html)) method.
+Account history should have 12 `Payment` transactions, 1 `SetRegularKey` transaction, and 1 `AccountSet` transaction only, otherwise is proven to be invalid. Account history can be queried via the [`account_tx`]((https://xrpl.org/account_tx.html)) method.
 
 ## Request format
 
