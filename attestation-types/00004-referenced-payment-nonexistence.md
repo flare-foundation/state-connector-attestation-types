@@ -54,7 +54,7 @@ In such a way the attestation confirms the required transaction did not appear i
 | `upperBoundProof`        | 32           | `ByteSequenceLike` | The hash of the confirmation block for an upper query window boundary block. |
 | `deadlineBlockNumber`    | 4            | `NumberLike`       | Maximum number of the block where the transaction is searched for.           |
 | `deadlineTimestamp`      | 4            | `NumberLike`       | Maximum median timestamp of the block where the transaction is searched for. |
-| `destinationAddressHash` | 32           | `NumberLike`       | Hash of exact address to which the payment was done to.                      |
+| `destinationAddressHash` | 32           | `ByteSequenceLike` | Hash of exact address to which the payment was done to.                      |
 | `amount`                 | 16           | `NumberLike`       | The exact amount to search for.                                              |
 | `paymentReference`       | 32           | `ByteSequenceLike` | The payment reference to search for.                                         |
 
@@ -78,4 +78,7 @@ In such a way the attestation confirms the required transaction did not appear i
 | `firstOverflowBlockNumber`    | `uint64`  | The first (lowest) confirmed block with `timestamp > deadlineTimestamp` and `blockNumber  > deadlineBlockNumber`. |
 | `firstOverflowBlockTimestamp` | `uint64`  | Timestamp of the `firstOverflowBlock`.                                                                |
 
+Next: [00005 - Trustline Issuance](./00005-trustline-issuance.md)
+
 [Back to home](../README.md)
+
