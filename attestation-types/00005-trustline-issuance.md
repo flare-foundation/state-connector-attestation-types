@@ -6,22 +6,32 @@
 
 ## Description
 
-The purpose of this attestation type is to provide information about a issued trustline, its issuer account and its issued token. Note that this type of attestation is only available on XRP ledger
+The purpose of this attestation type is to provide information about a [token issuer](https://xrpl.org/trust-lines-and-issuing.html) on the XRP Ledger.
 
-A successful attestation is provided by extracting the following data about a transaction:
+A successful attestation is provided by extracting the following data from an account's history:
 
-- Issuance token currency code
-- Account address
-- regular key (has to be rrrrrrrrrrrrrrrrrrrrBZbvji - ACCOUNT_ONE)
-- Indicator that account enabled rippling (lsfDefaultRipple)
-- Indicator that account disabled master key (lsfDisableMaster)
-- Indicator that Account has only one token payment transactions 
-  - Currency code associated with this issued transaction
-  - Value issued
-  - Issuer address
-- top block hash (can be number)
-- bottom block hash (can be number)
+1. [Payment](https://xrpl.org/payment.html) Transaction Data
 
+The payment transaction "issues" the token on the XRP Ledger to a receiver who has created a trust line with the issuer. The attestator will provide the [token amount](https://xrpl.org/currency-formats.html#token-amounts) fields:
+
+- [`currency`](https://xrpl.org/currency-formats.html#currency-codes)
+- `value`
+- `issuer`
+
+2. [SetRegularKey](https://xrpl.org/setregularkey.html) Transaction Data
+
+Attestor must confirm that the issuer has set the account regular key to `rrrrrrrrrrrrrrrrrrrrBZbvji` (AKA `[ACCOUNT_ONE](https://xrpl.org/accounts.html#special-addresses)`)
+
+3. [AccountSet](https://xrpl.org/accountset.html) Transaction Data
+
+Attestor must confirm that the following config is applied to [account settings](https://xrpl.org/accountroot.html#accountroot-flags):
+
+- Enabled rippling (lsfDefaultRipple)
+- Disabled master key (lsfDisableMaster)
+
+Attestation request should provide top and bottom block hash (or block index).
+
+Account history should have 1 `Payment` transaction, 1 `SetRegularKey` transaction, and 1 `AccountSet` transaction only, otherwise is proven to be invalid. Account history can be queried via the [`account_tx`]((https://xrpl.org/account_tx.html)) method.
 
 ## Request format
 
@@ -37,16 +47,16 @@ Beside the standard fields (`attestationType`, `sourceId` and `upperBoundProof`)
 ## Verification rules
 
 - There must be an account associated with provided address
-- address had to be founded later that system bottom block number and upperBoundProof
-- Call XRPL [`account_info`](https://xrpl.org/account_info.html) and check
+- Address must be funded later than system bottom block number and upperBoundProof
+- Call XRPL [`account_info`](https://xrpl.org/account_info.html) and check:
  
   - account must have rippling enabled (flag `lsfDefaultRipple` is set)
   - account must have disabled master key (flag `lsfDisableMaster` is set)
   - account must have set the regular key to account_one (`rrrrrrrrrrrrrrrrrrrrBZbvji`)
 
-- there can only be two payment transaction associated with this address
-  - founding account transaction done in past 2 days
-  - one token transfer transaction from which we extract
+- There can only be two `Payment` transactions associated with this address
+  - 1. Account funding transaction done in past 2 days
+  - 2. Token issuance transaction from which we extract:
     - CurrencyCode
     - Value
     - Issuer
